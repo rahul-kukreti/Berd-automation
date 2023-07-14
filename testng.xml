@@ -6,10 +6,18 @@
 		<listener class-name="com.Test.resources.ExtentRepoterNG" />
 	</listeners>
 	<parameter name="enviroment" value="stage" />
-	<parameter name="testCaseID" value="testCaseID_01" />
-	<test name="BaseClass" preserve-order="true">
+	 <parameter name="testCaseID" value="testCaseID_01" /> 
+	
+	<test name="Asset" preserve-order="true">
 		<classes>
 			<class name="com.End2End.Test_Regression.Asset" />
 		</classes>
 	</test>
+	<parameter name="testCaseID2" value="testCaseID_02" /> 
+	<test name="Asset1" preserve-order="true">
+		<classes>
+			<class name="com.End2End.Test_Regression.Asset" />
+		</classes>
+	</test>
+	
 </suite>

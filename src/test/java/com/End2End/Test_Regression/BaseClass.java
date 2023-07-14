@@ -3,6 +3,7 @@ package com.End2End.Test_Regression;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.asserts.SoftAssert;
 
@@ -21,10 +22,12 @@ public class BaseClass {
 	public ExtentReports rep = ExtentManager.getInstance();
 	public static ExtentTest logger;
 	public static Recordset record;
-	String sheetName = "Berd";
+	public static Recordset record1;
+	String sheetName = "assetproject";
+	String sheetNameBridge = "assetbridge";
 	public static CommonFunctions commFunc = new CommonFunctions();;
 	public static BrowserFactory browserSelect = new BrowserFactory();
-	public static DataInput input = new DataInput();
+	public  DataInput input = new DataInput();
 	public static Asset_ObjectPage asset = new Asset_ObjectPage();
 	
 	@Parameters({"enviroment"})
@@ -36,11 +39,25 @@ public class BaseClass {
 			
 	}
 	@Parameters({ "testCaseID" })
-	@BeforeSuite(description = "initializing DataInput", alwaysRun = true)
+	@BeforeTest(description = "initializing DataInput", alwaysRun = true)
+	public void initializeInpuData1(String testCaseID) throws FilloException {
+
+		// Get data from sheet
+		record =this.input.asset_projectfromsheet("assetproject", testCaseID);
+		
+	}
+	
+	@Parameters({ "testCaseID2" })
+	@BeforeTest(description = "initializing DataInput", alwaysRun = true)
 	public void initializeInpuData(String testCaseID) throws FilloException {
 
 		// Get data from sheet
-		record = input.getValuefromsheet(sheetName, testCaseID);
+		record1 =this.input.asset_projectfromsheet("assetbridge", testCaseID);
+		String date = record1.getField("Date");
+		System.out.println(date);
+		
 	}
+	
+	
 
 	}

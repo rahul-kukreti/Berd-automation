@@ -6,21 +6,33 @@ import com.codoid.products.fillo.Fillo;
 import com.codoid.products.fillo.Recordset;
 
 public class DataInput {
-	
-	public String getfilename() {
-		
+
+	public String getfilenamefromSheet() {
+
 		String filename = "/TestData/Stage_data.xlsx";
 		return filename;
 	}
-	
-	public Recordset getValuefromsheet(String sheetName,String testCaseID) throws FilloException {
-		
+
+	public Recordset asset_projectfromsheet(String sheetName, String testCaseID) throws FilloException {
+
 		Recordset record = null;
 		Fillo fillo = new Fillo();
-		Connection conn = fillo.getConnection(System.getProperty("user.dir").replace("\\", "/") + getfilename());
-		record = conn.executeQuery("Select * From " + sheetName + " where testCaseID = '" +testCaseID+"'");
-        record.moveFirst();
-        return record;
+		Connection conn = fillo
+				.getConnection(System.getProperty("user.dir").replace("\\", "/") + getfilenamefromSheet());
+		record = conn.executeQuery("Select * From " + sheetName + " where testCaseID = '" + testCaseID + "'");
+		record.moveFirst();
+		return record;
 	}
+
+	/*
+	 * public Recordset bridge_projectfromsheet(String sheetName, String testCaseID)
+	 * throws FilloException {
+	 * 
+	 * Recordset record = null; Fillo fillo = new Fillo(); Connection conn = fillo
+	 * .getConnection(System.getProperty("user.dir").replace("\\", "/") +
+	 * getfilenamefromSheet()); record = conn.executeQuery("Select * From " +
+	 * sheetName + " where testCaseID = '" + testCaseID + "'"); record.moveFirst();
+	 * return record; }
+	 */
 
 }

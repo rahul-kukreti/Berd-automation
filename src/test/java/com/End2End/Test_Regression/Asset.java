@@ -23,6 +23,7 @@ public class Asset extends BaseClass {
 		asset.Asset_form(driver);
 
 		asset.add_asset_details(driver, "New");
+		commFunc.Click(driver,By.xpath("(//mat-expansion-panel-header//child::mat-icon[contains(text(),'add')])"));
 		String project_id = record.getField("project_ID");
 		commFunc.put_field_data(driver, "projectId", project_id);
 		String project_label = record.getField("project_Label");
@@ -31,10 +32,16 @@ public class Asset extends BaseClass {
 		commFunc.put_field_data(driver, "bridgeid", Bridge_id);
 		String Bridge_Label = record.getField("Bridge_Label");
 		commFunc.put_field_data(driver, "bridgeLabel", Bridge_Label);
+		
+		//sheet 1 ka data hai ye
+		
+		
+		Thread.sleep(3000);
+		commFunc.Click(driver,By.xpath("(//mat-expansion-panel-header//child::mat-icon[contains(text(),'add')])"));
 		String date = record.getField("Date");
 		commFunc.put_field_data(driver, "lettingDate", date);
-		commFunc.dropdown_data(driver, "country");
-		commFunc.Click(driver, By.xpath("//select//option[text()='India']"));
+		commFunc.dropdown_data(driver, "country","India");
+		//commFunc.Click(driver, By.xpath("//select//option[text()='India']"));
 		String description = record.getField("Description");
 		commFunc.put_field_data(driver, "description", description);
 		String low_bid = record.getField("Estimation_bid");
@@ -49,8 +56,8 @@ public class Asset extends BaseClass {
 		commFunc.put_field_data(driver, "wingwallType", Wingwall);
 		String piles = record.getField("Piles");
 		commFunc.put_field_data(driver, "pilesType", piles);
-		commFunc.dropdown_data(driver, "maintenance");
-		commFunc.Click(driver, By.xpath("//select//option[text()='FALSE']"));
+		commFunc.dropdown_data(driver, "maintenance","FALSE");
+		//commFunc.Click(driver, By.xpath("//select//option[text()='FALSE']"));
 		String Width = record.getField("Width");
 		commFunc.put_field_data(driver, "totalWidth", Width);
 		String Span = record.getField("Span");
@@ -75,10 +82,13 @@ public class Asset extends BaseClass {
 		asset.editing_asset(driver);
 		asset.add_asset_details(driver, "View");
 		asset.add_asset_details(driver, "Edit");
+		commFunc.Click(driver,By.xpath("(//mat-expansion-panel-header//child::mat-icon[contains(text(),'add')])"));
+		Thread.sleep(2000);
 		String project_label_updated = record.getField("project_Label_updated");
 		commFunc.put_field_data(driver, "projectLabel", project_label_updated);
 		asset.update_btn(driver);
 		asset.validate_update_btn(driver, project_label_updated);
+		
 		
 	}
 	

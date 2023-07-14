@@ -46,9 +46,10 @@ public class CommonFunctions {
 		  ele.sendKeys(value);
 	  }
 	 
-	 public void dropdown_data(WebDriver driver,String name) throws InterruptedException {
-		this.Explicitywait(driver, By.xpath("//select[@formcontrolname='"+name+"']"));
-		  this.jclick(driver, By.xpath("//select[@formcontrolname='"+name+"']"));
+	 public void dropdown_data(WebDriver driver,String name,String value) throws InterruptedException {
+		this.Explicitywait(driver, By.xpath("//mat-select[@formcontrolname='"+name+"']"));
+		  this.jclick(driver, By.xpath("//mat-select[@formcontrolname='"+name+"']"));
+		  this.jclick(driver,By.xpath("//div[@role='listbox']//child::mat-option//span[text()='"+value+"']"));
 		  
 	  }
 

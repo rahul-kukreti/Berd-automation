@@ -70,7 +70,6 @@ public class Asset_ObjectPage extends BaseClass {
 		List<WebElement> columnNames = driver.findElements(By.xpath("//table[contains(@role,'table')]//child::tbody//tr//td"));
 		
 		int count_column = columnNames.size();
-		System.out.println(count_column);
 		for(int i = 0; i<count_column; i++) {
 			String value = driver.findElement(By.xpath("(//tbody[@role='rowgroup']//tr//td)[3]")).getText();
 			if(value.equalsIgnoreCase(name)) {
@@ -83,12 +82,12 @@ public class Asset_ObjectPage extends BaseClass {
 		}
 	}
 	
+	
 	public void validate_update_btn(WebDriver driver,String name) throws InterruptedException {
 		Thread.sleep(3000);
 		List<WebElement> columnNames = driver.findElements(By.xpath("//table[contains(@role,'table')]//child::tbody//tr//td"));
 		
 		int count_column = columnNames.size();
-		System.out.println(count_column);
 		for(int i = 0; i<count_column; i++) {
 			String value = driver.findElement(By.xpath("(//tbody[@role='rowgroup']//tr//td)[3]")).getText();
 			if(value.equalsIgnoreCase(name)) {
