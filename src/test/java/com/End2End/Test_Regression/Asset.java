@@ -2,6 +2,7 @@
 package com.End2End.Test_Regression;
 
 import org.openqa.selenium.By;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.codoid.products.exception.FilloException;
@@ -17,13 +18,14 @@ public class Asset extends BaseClass {
 		logger.log(LogStatus.INFO, "Website opened successfully!");
 	}
 
+	@Parameters({ "Project" })
 	@Test(testName = "Add asset details", priority = 2, enabled = true)
 	public void add_asset() throws FilloException, InterruptedException {
-		System.out.println("//For adding asset");
+		System.out.println("//Add asset details for Project");
 		asset.Asset_form(driver);
 
 		asset.add_asset_details(driver, "New");
-		commFunc.Click(driver,By.xpath("(//mat-expansion-panel-header//child::mat-icon[contains(text(),'add')])"));
+		commFunc.Click(driver, By.xpath("(//mat-expansion-panel-header//child::mat-icon[contains(text(),'add')])"));
 		String project_id = record.getField("project_ID");
 		commFunc.put_field_data(driver, "projectId", project_id);
 		String project_label = record.getField("project_Label");
@@ -32,16 +34,16 @@ public class Asset extends BaseClass {
 		commFunc.put_field_data(driver, "bridgeid", Bridge_id);
 		String Bridge_Label = record.getField("Bridge_Label");
 		commFunc.put_field_data(driver, "bridgeLabel", Bridge_Label);
-		
-		//sheet 1 ka data hai ye
-		
-		
+	}
+
+	@Parameters({ "Bridge" })
+	@Test(testName = "Add asset details for Bridge", priority = 3, enabled = true)
+	public static void add_assetBridge() throws FilloException, InterruptedException {
 		Thread.sleep(3000);
-		commFunc.Click(driver,By.xpath("(//mat-expansion-panel-header//child::mat-icon[contains(text(),'add')])"));
+		commFunc.Click(driver, By.xpath("(//mat-expansion-panel-header//child::mat-icon[contains(text(),'add')])"));
 		String date = record.getField("Date");
 		commFunc.put_field_data(driver, "lettingDate", date);
-		commFunc.dropdown_data(driver, "country","India");
-		//commFunc.Click(driver, By.xpath("//select//option[text()='India']"));
+		commFunc.dropdown_data(driver, "country", "India");
 		String description = record.getField("Description");
 		commFunc.put_field_data(driver, "description", description);
 		String low_bid = record.getField("Estimation_bid");
@@ -56,8 +58,7 @@ public class Asset extends BaseClass {
 		commFunc.put_field_data(driver, "wingwallType", Wingwall);
 		String piles = record.getField("Piles");
 		commFunc.put_field_data(driver, "pilesType", piles);
-		commFunc.dropdown_data(driver, "maintenance","FALSE");
-		//commFunc.Click(driver, By.xpath("//select//option[text()='FALSE']"));
+		commFunc.dropdown_data(driver, "maintenance", "FALSE");
 		String Width = record.getField("Width");
 		commFunc.put_field_data(driver, "totalWidth", Width);
 		String Span = record.getField("Span");
@@ -67,33 +68,30 @@ public class Asset extends BaseClass {
 		String Skew = record.getField("Skew");
 		commFunc.put_field_data(driver, "skew", Skew);
 		asset.save_btn(driver);
-
 		String project_labels = record.getField("project_Label");
-		System.out.println(project_labels);
 		asset.validate_asset(driver, project_labels);
 		logger.log(LogStatus.INFO, "Asset data added successfully!");
 
 	}
-	
-	@Test(testName = "Edit asset details", priority = 3, enabled = true)
+
+	@Test(testName = "Edit asset details", priority = 4, enabled = true)
 	public void edit_details() throws FilloException, InterruptedException {
-		
+
 		System.out.println("//For editing asset");
 		asset.editing_asset(driver);
 		asset.add_asset_details(driver, "View");
 		asset.add_asset_details(driver, "Edit");
-		commFunc.Click(driver,By.xpath("(//mat-expansion-panel-header//child::mat-icon[contains(text(),'add')])"));
+		commFunc.Click(driver, By.xpath("(//mat-expansion-panel-header//child::mat-icon[contains(text(),'add')])"));
 		Thread.sleep(2000);
 		String project_label_updated = record.getField("project_Label_updated");
 		commFunc.put_field_data(driver, "projectLabel", project_label_updated);
 		asset.update_btn(driver);
 		asset.validate_update_btn(driver, project_label_updated);
-		
-		
+
 	}
-	
-	@Test(testName = "Delete asset details", priority = 4, enabled = true)
-	
+
+	@Test(testName = "Delete asset details", priority = 5, enabled = true)
+
 	public void delete_asset() {
 		System.out.println("//For deleting asset");
 		asset.editing_asset(driver);

@@ -24,15 +24,6 @@ public class DataInput {
 		return record;
 	}
 
-	/*
-	 * public Recordset bridge_projectfromsheet(String sheetName, String testCaseID)
-	 * throws FilloException {
-	 * 
-	 * Recordset record = null; Fillo fillo = new Fillo(); Connection conn = fillo
-	 * .getConnection(System.getProperty("user.dir").replace("\\", "/") +
-	 * getfilenamefromSheet()); record = conn.executeQuery("Select * From " +
-	 * sheetName + " where testCaseID = '" + testCaseID + "'"); record.moveFirst();
-	 * return record; }
-	 */
+
 
 }
