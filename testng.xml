@@ -7,19 +7,19 @@
 	</listeners>
 	<parameter name="enviroment" value="stage" />
 	
-	 <test name="Test1" preserve-order="true">
+	 <test name="Asset" preserve-order="true">
 	  <parameter name="Project" value="Project_testCaseID_01" /> 
 	 	<parameter name="testCaseID" value="Project_testCaseID_01" /> 
 		<classes>	
 			<class name="com.End2End.Test_Regression.Asset" />
 		</classes>
 	</test>
-
-	<test name="Test2" preserve-order="true">
-		 <parameter name="Bridge" value="Bridge_testCaseID_02" /> 
+	
+	 <test name="Bridge" preserve-order="true">
+	  <parameter name="Bridge" value="Bridge_testCaseID_02" /> 
 	 	<parameter name="testCaseID" value="Bridge_testCaseID_02" /> 
 		<classes>	
-			<class name="com.End2End.Test_Regression.Asset" />
+			<class name="com.End2End.Test_Regression.Bridge_Design" />
 		</classes>
 	</test>
 	
