@@ -5,6 +5,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
 import com.End2End.PagesObjects.Asset_ObjectPage;
+import com.End2End.PagesObjects.BridgeDesign_Objectpage;
 import com.codoid.products.exception.FilloException;
 import com.codoid.products.fillo.Recordset;
 import com.relevantcodes.extentreports.ExtentReports;
@@ -25,6 +26,7 @@ public class BaseClass {
 	public static BrowserFactory browserSelect = new BrowserFactory();
 	public DataInput input = new DataInput();
 	public static Asset_ObjectPage asset = new Asset_ObjectPage();
+	public static BridgeDesign_Objectpage bridge =  new BridgeDesign_Objectpage();
 	public static BaseClass base = new BaseClass();
 
 	@Parameters({ "enviroment" })

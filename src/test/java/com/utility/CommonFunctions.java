@@ -39,17 +39,39 @@ public class CommonFunctions {
 
 	public void put_field_data(WebDriver driver, String field_data, String value) 
 	{
-		this.Explicitywait(driver, By.xpath("//mat-label[text()='"+field_data+"']//ancestor::mat-form-field//following-sibling::input"));
-		        WebElement ele = driver.findElement(By.xpath("//mat-label[text()='"+field_data+"']//ancestor::mat-form-field//following-sibling::input"));
+	try
+	{
+		//this.Explicitywait(driver, By.xpath("//mat-label[text()='"+field_data+"']//ancestor::mat-form-field//following-sibling::input"));
+		if(driver.findElements(By.xpath("//mat-label[text()='"+field_data+"']//ancestor::mat-form-field//following-sibling::input")).size()!=0) {
+		WebElement ele = driver.findElement(By.xpath("//mat-label[text()='"+field_data+"']//ancestor::mat-form-field//following-sibling::input"));
+			
 		        ele.sendKeys(value);
+		}
+	}
+	catch(TimeoutException e) {
+		
+		throw new TimeoutException("element not found",e);
+		}
 	}
 
-	public void dropdown_data(WebDriver driver, String name, String value) throws InterruptedException {
-		this.Explicitywait(driver, By.xpath("//mat-select[@formcontrolname='" + name + "']"));
-		this.jclick(driver, By.xpath("//mat-select[@formcontrolname='" + name + "']"));
+	public void dropdown_data(WebDriver driver, String name, String value)
+	{
+		try
+		{
+	
+		if(driver.findElements(By.xpath("//mat-label[contains(text(),'"+name+"')]")).size()!=0)
+		{
+		this.jclick(driver, By.xpath("//mat-label[contains(text(),'"+name+"')]"));
 		this.jclick(driver, By.xpath("//div[@role='listbox']//child::mat-option//span[text()='" + value + "']"));
 
 	}
+		}
+		catch(TimeoutException e) {
+			
+			throw new TimeoutException("element not found",e);
+			}
+		}
+		
 
 	/**
 	 * Switches to the next tab
