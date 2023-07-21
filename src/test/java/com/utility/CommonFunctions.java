@@ -21,7 +21,6 @@ public class CommonFunctions {
 
 	JavascriptExecutor js;
 	SoftAssert softAssert = new SoftAssert();
-	
 
 	static SoftAssert objSoftAssert = new SoftAssert();
 
@@ -37,21 +36,20 @@ public class CommonFunctions {
 
 		softAssert.assertAll();
 	}
-	
-	 public void put_field_data(WebDriver driver,String field_data, String value) {
-		  
-		  WebElement ele = driver.findElement(By.xpath("//input[@formcontrolname='"+field_data+"']"));
-		  ele.sendKeys(Keys.chord(Keys.CONTROL, "a"));
-		  ele.sendKeys(Keys.chord(Keys.CONTROL, "x"));
-		  ele.sendKeys(value);
-	  }
-	 
-	 public void dropdown_data(WebDriver driver,String name,String value) throws InterruptedException {
-		this.Explicitywait(driver, By.xpath("//mat-select[@formcontrolname='"+name+"']"));
-		  this.jclick(driver, By.xpath("//mat-select[@formcontrolname='"+name+"']"));
-		  this.jclick(driver,By.xpath("//div[@role='listbox']//child::mat-option//span[text()='"+value+"']"));
-		  
-	  }
+
+	public void put_field_data(WebDriver driver, String field_data, String value) 
+	{
+		this.Explicitywait(driver, By.xpath("//mat-label[text()='"+field_data+"']//ancestor::mat-form-field//following-sibling::input"));
+		        WebElement ele = driver.findElement(By.xpath("//mat-label[text()='"+field_data+"']//ancestor::mat-form-field//following-sibling::input"));
+		        ele.sendKeys(value);
+	}
+
+	public void dropdown_data(WebDriver driver, String name, String value) throws InterruptedException {
+		this.Explicitywait(driver, By.xpath("//mat-select[@formcontrolname='" + name + "']"));
+		this.jclick(driver, By.xpath("//mat-select[@formcontrolname='" + name + "']"));
+		this.jclick(driver, By.xpath("//div[@role='listbox']//child::mat-option//span[text()='" + value + "']"));
+
+	}
 
 	/**
 	 * Switches to the next tab
@@ -342,33 +340,31 @@ public class CommonFunctions {
 		return date;
 
 	}
-	
-	public  String DateTimemonthly_Start() {
+
+	public String DateTimemonthly_Start() {
 		DateFormat dateFormat3 = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.DAY_OF_MONTH,
-				  cal.getActualMinimum(Calendar.DAY_OF_MONTH));
+		cal.set(Calendar.DAY_OF_MONTH, cal.getActualMinimum(Calendar.DAY_OF_MONTH));
 		String date = dateFormat3.format(cal.getTime());
 		return date;
 
 	}
-	
-	public  String DateTimemonthly_End() {
+
+	public String DateTimemonthly_End() {
 		DateFormat dateFormat3 = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.DAY_OF_MONTH,
-				  cal.getActualMaximum(Calendar.DAY_OF_MONTH));
+		cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
 		String date = dateFormat3.format(cal.getTime());
 		return date;
 
 	}
-	
+
 	public String last_14_days() {
 		DateFormat dateFormat3 = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar cal = Calendar.getInstance();
-		cal.add(Calendar.DATE,-14);
+		cal.add(Calendar.DATE, -14);
 		String date = dateFormat3.format(cal.getTime());
 		return date;
 	}
-	
+
 }
